@@ -3,4 +3,3 @@ bower_components
 .env
 index.min.js
 package-lock.json
-config.js

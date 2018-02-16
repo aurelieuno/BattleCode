@@ -65,7 +65,7 @@ export default class Friends extends Component {
         email: challengee,
       },
     }).then(({ data: user }) => {
-      axios.post('/text', { user: window.user.slice(0, window.user.indexOf('@')), phone: '5043430627' })
+      axios.post('/text', { user: window.user.slice(0, window.user.indexOf('@')), phone: user.phone })
         .then(res => console.log(res));
     });
   }
