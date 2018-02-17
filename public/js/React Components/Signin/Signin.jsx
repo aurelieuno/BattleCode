@@ -45,7 +45,7 @@ export default class Signin extends Component {
               <h1 className="headers" style={{ fontFamily: 'Monoton, cursive', fontSize: '60pt' }}>BATTLE CODE</h1>
               <img className="animated" src={boat} alt="battle boat" />
             </div>
-            <h3 className="headers" style={{ 'font-family': 'Roboto, sans-serif', fontSize: '20pt' }}>Compete against others to prove your coding skills</h3>
+            <h3 className="headers" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '20pt' }}>Compete against others to prove your coding skills</h3>
             <CardText className="signin-buttons">
               <GoogleLogin
                 socialId="175201881607-unus57bf225b5t59emkpsb0bavj1a9ae.apps.googleusercontent.com"
