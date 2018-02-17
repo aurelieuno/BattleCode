@@ -16,8 +16,8 @@ mongoose.connect(mongoDB, {
 
 const pusher = new Pusher({
   appId: '452960',
-  key: 'c4b754fe17b65799b281',
-  secret: '24c88ff32ea02f8c0fe8',
+  key: process.env.KEY,
+  secret: process.env.SECRET,
   cluster: 'us2',
   encrypted: true,
 });
