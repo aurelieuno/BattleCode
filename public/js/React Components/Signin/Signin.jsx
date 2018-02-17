@@ -42,7 +42,7 @@ export default class Signin extends Component {
             <Script url="https://apis.google.com/js/platform.js" />
             {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
             <div id="boat">
-              <h1 className="headers" style={{ 'font-family': 'Monoton, cursive', fontSize: '60pt' }}>BATTLE CODE</h1>
+              <h1 className="headers" style={{ fontFamily: 'Monoton, cursive', fontSize: '60pt' }}>BATTLE CODE</h1>
               <img className="animated" src={boat} alt="battle boat" />
             </div>
             <h3 className="headers" style={{ 'font-family': 'Roboto, sans-serif', fontSize: '20pt' }}>Compete against others to prove your coding skills</h3>
@@ -50,7 +50,7 @@ export default class Signin extends Component {
               <GoogleLogin
                 socialId="175201881607-unus57bf225b5t59emkpsb0bavj1a9ae.apps.googleusercontent.com"
                 className="login-btn"
-                style={{ 'border-radius': '10px' }}
+                style={{ borderRadius: '10px' }}
                 scope="https://www.googleapis.com/auth/userinfo.email"
                 responseHandler={this.responseGoogle}
                 buttonText="Login With Google"
