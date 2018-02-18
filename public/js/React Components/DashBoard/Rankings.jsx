@@ -24,7 +24,11 @@ export default class Rankings extends Component {
           },
         }).then(({ data: user }) => {
           const pureWinner = winner.slice();
-          pureWinner[2] = user.username.split('@')[0];
+          if (user.username) {
+            pureWinner[2] = user.username.split('@')[0];
+          } else {
+            pureWinner[2] = '<user deleted>';
+          }
           winnersByName.push(pureWinner);
           this.setState({ RankingsList: winnersByName.sort((a, b) => b[1] - a[1]) });
         }),
@@ -42,9 +46,9 @@ export default class Rankings extends Component {
       </li>
     ));
     return (
-      <div className="DashBoardHalf">
+      <div className="DashBoardThird">
         <div className="ListTitle">
-          <h1> Rankings </h1>
+          <h1> General Rankings </h1>
         </div>
         <ul className="DashBoardList">
           {RankingsList}

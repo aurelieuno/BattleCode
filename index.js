@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./dbTools');
 const auth = require('./auth');
+const { notifyOnChallenge } = require('./middleware/twilioNotifications');
 
 const app = express();
 
@@ -18,7 +19,7 @@ const port = process.env.PORT || 5000;
 app.set('port', port);
 const server = app.listen(port, (err) => {
   if (err) {
-    console.log(err);
+    console.error(err);
   } else {
     console.log('listening on port', port);
   }
@@ -28,15 +29,11 @@ const server = app.listen(port, (err) => {
 const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
-  console.log('connected');
+  console.log('socket connected');
   socket.on('room', (data) => {
     console.log('in joining room in SERVER', data);
     const room = 'alpha';
-    // socket.join(room)
     socket.emit('new user join', ['user']);
-    // setTimeout(() => {
-    //   socket.in('alpha').emit('new user join', data.user)
-    // }, 2000);
   });
 });
 
@@ -47,10 +44,26 @@ app.post('/signin', (req, res) => {
     });
   });
 });
+
+app.post('/text', (req, res) => {
+  const { user, phone } = req.body;
+  notifyOnChallenge(user, phone);
+  res.send(user);
+});
+
 app.get('/competitions', db.getChallenges);
 app.get('/competition', db.getChallengeById);
 app.post('/uniquecompetition', db.returnOneChallenge);
 app.post('/makechallenge', db.makeChallenge);
 app.post('/gamewin', db.gameWin);
 app.get('/games', db.getGameWinners);
+app.get('/usergames', db.getUserGame);
 app.get('/findUserById', db.findUserById);
+app.get('/findUserByEmail', db.findUserByEmail);
+app.post('/addFriend', db.addFriend);
+app.post('/updateinfo', db.updateInfo);
+app.get('/getFriends', db.getFriends);
+app.get('/duels', db.getDuels);
+app.post('/duel', db.createDuel);
+app.post('/duelUpdate', db.updateDuel);
+app.get('/userwins', db.getUserWins);

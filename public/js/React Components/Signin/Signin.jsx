@@ -19,7 +19,6 @@ export default class Signin extends Component {
     const idToken = googleUser.getAuthResponse().id_token;
     const profile = googleUser.getBasicProfile();
     const userEmail = profile.getEmail();
-    console.log({ accessToken: idToken, email: userEmail });
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/signin', true);
@@ -31,6 +30,7 @@ export default class Signin extends Component {
         userLoginLoaded: true,
         user: userEmail,
       });
+      setTimeout(() => { window.location.hash = '/dash'; }, 0);
     };
     xhr.send(`idtoken=${idToken}`);
   }
@@ -42,14 +42,15 @@ export default class Signin extends Component {
             <Script url="https://apis.google.com/js/platform.js" />
             {this.state.userLoginLoaded ? <Redirect to="/dash" /> : <div />}
             <div id="boat">
+              <h1 className="headers" style={{ fontFamily: 'Monoton, cursive', fontSize: '60pt' }}>BATTLE CODE</h1>
               <img className="animated" src={boat} alt="battle boat" />
             </div>
-            <h1 className="headers">BattleCode!</h1>
-            <h3 className="headers">Compete against others to prove your coding skills!</h3>
+            <h3 className="headers" style={{ fontFamily: 'Roboto, sans-serif', fontSize: '20pt' }}>Compete against others to prove your coding skills</h3>
             <CardText className="signin-buttons">
               <GoogleLogin
-                socialId="106454631553-mles8i7ktt96qbvps7uoh2k9idop90e0.apps.googleusercontent.com"
+                socialId="175201881607-unus57bf225b5t59emkpsb0bavj1a9ae.apps.googleusercontent.com"
                 className="login-btn"
+                style={{ borderRadius: '10px' }}
                 scope="https://www.googleapis.com/auth/userinfo.email"
                 responseHandler={this.responseGoogle}
                 buttonText="Login With Google"
